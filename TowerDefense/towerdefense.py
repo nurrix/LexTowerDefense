@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
 
-def main():
+def main() -> list[str]:
     """
         This function starts our program.
     """
-    pass
+    return 1
 
 if __name__ == "__main__":
-    main()
+    s = main()
+    print(s)
