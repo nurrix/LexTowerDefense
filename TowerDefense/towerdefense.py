@@ -5,7 +5,7 @@ def main() -> list[str]:
     """
         This function starts our program.
     """
-    return 1
+    return ['s']
 
 if __name__ == "__main__":
     s = main()
