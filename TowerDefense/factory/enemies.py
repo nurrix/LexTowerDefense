@@ -2,7 +2,7 @@
 from abc import ABC
 from enum import Enum, auto
 
-from TowerDefense.factory.attack import Projectile
+from factory.attacks import Attack
 
     
 
@@ -39,5 +39,5 @@ class Enemy(ABC):
             target (Unit): This unit can attack a 
         """
     
-    def take_damage(self, attack: Projectile):
+    def take_damage(self, attack: Attack):
         self.health -= attack.apply_damage(self.defense)

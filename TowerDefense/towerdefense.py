@@ -1,12 +1,18 @@
 #!/usr/bin/env python
 
 
-def main() -> list[str]:
+from factory.units import SimpletonTower
+from utility.vector import Vector2D
+
+
+def main() -> None:
     """
         This function starts our program.
     """
-    return ['s']
+    # Test by creating a Tower
+    tower1 = SimpletonTower(Vector2D(x=100,y=100))
+    print(tower1)
+    
 
 if __name__ == "__main__":
-    s = main()
-    print(s)
+    main()
