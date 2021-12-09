@@ -16,6 +16,7 @@ class Unit(ABC):
     range: int
     splash_radius: int
     can_attack_flying: bool
+    price: int
     attack_type: AttackType
     dmg_lvl: int = 0
     
@@ -31,14 +32,15 @@ class Tower(Unit):
     """
     Tower creates an instance of a tower
     """
-    def __init__(self, Loc: Vector2D, strength:int, health:int, defense: int, range:int, splash_radius:int, can_attack_flying:bool) -> None:
+    def __init__(self, Loc: Vector2D, strength:int, health:int, defense: int, range:int, splash_radius:int, can_attack_flying:bool, price: int) -> None:
         super().__init__(Loc=Loc,
                          strength=strength, 
                          health=health, 
                          defense=defense,
                          range=range, 
                          splash_radius=splash_radius, 
-                         can_attack_flying=can_attack_flying, 
+                         can_attack_flying=can_attack_flying,
+                         price = price, 
                          attack_type = AttackType.Projectile,
                          )
         
@@ -62,19 +64,45 @@ class SimpletonTower(Tower):
                          strength=1, 
                          health=1, 
                          defense=0,
-                         range=10, 
+                         range=20, 
                          splash_radius=0, 
-                         can_attack_flying=True)
-
+                         can_attack_flying=True,
+                         price=10,)
+        
+class SplashTower(Tower):
+    """ Class for Splash Tower """
+    def __init__(self, Loc: Vector2D) -> None:
+        super().__init__(Loc=Loc, 
+                         strength=1, 
+                         health=1, 
+                         defense=0, 
+                         range=10, 
+                         splash_radius=1, 
+                         can_attack_flying=False, 
+                         price=20,)
 class UnitFactory(ABC):
     """ A factory to generate Units """
     
     @abstractmethod
-    def create_new(self) -> Unit:
+    def create_new(self, Loc: Vector2D) -> Unit:
         """ Return a Unit """
         
 class TowerFactory(UnitFactory):
-    """ Factory aimed to generate a SimpletonTower"""
+    """ Factory aimed to generate a Tower"""
     @abstractmethod
-    def create_new(self) -> Tower:
+    def create_new(self, Loc: Vector2D) -> Tower:
         """ Creates a new tower intance """
+        
+class SimpletonTowerFactory(TowerFactory):
+    """ Factory aimed to generate Simpleton Tower Instances"""
+    
+    def create_new(self, Loc: Vector2D) -> Tower:
+        """ Create a Simpleton Tower instance"""
+        return SimpletonTower(Loc = Loc)
+
+class SplashTowerFactory(TowerFactory):
+    """ Factory aimed to generate Splash Tower Instances"""
+    
+    def create_new(self, Loc: Vector2D) -> Tower:
+        """ Create a Splash Tower instance"""
+        return SplashTower(Loc = Loc)
