@@ -1,6 +1,16 @@
 
+from abc import ABC
 import tkinter as tk
 import game
+
+from enum import Enum, auto
+
+
+class TowerDefenseGameState(Enum):
+    IDLE = auto()
+    WAITING_FOR_SPAWN = auto()
+    SPAWNING = auto()
+
 
 
 class TowerDefenseGame(game.Game):
@@ -9,15 +19,20 @@ class TowerDefenseGame(game.Game):
     def __init__(self):
         super().__init__(title="My Tower Defense Game", width=800, height=600, timestep=50)
         
+        # Initialize TowerDefenseGame specifics
+        self.initialize()
         
+    def set_state(self, state: TowerDefenseGameState):
+        """ Set the state of the TowerDefense"""
+        self.state = state
         
     def initialize(self):
+        """ Initialize the TowerDefense Game Specifics. """
+        self.state: TowerDefenseGameState = TowerDefenseGameState.IDLE
+        
         self.displayboard = DisplayBoard()
         self.infoboard = Infoboard()
         self.towerbox = TowerBox()
-        self.mouse = Mouse()
-        self.gameMap = Map()
-        self.wavegenerator = WaveGenerator()
         
         self.add_object(object=Map())
         self.add_object(object=WaveGenerator())
@@ -30,21 +45,21 @@ class TowerDefenseGame(game.Game):
         super().paint()
         
         
-class DisplayBoard:
+class DisplayBoard(ABC):
     pass
 
-class Infoboard:
+class Infoboard(ABC):
     pass
 
-class TowerBox:
+class TowerBox(ABC):
     pass
 
-class Mouse(game.GameObject):
+class Mouse(ABC):
     def __init__(self,master: game.Game=None):
         self.master = master
 
-class Map(game.GameObject):
+class Map(ABC):
     pass
 
-class WaveGenerator(game.GameObject):
+class WaveGenerator(ABC):
     pass
