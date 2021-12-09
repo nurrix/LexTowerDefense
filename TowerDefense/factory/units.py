@@ -32,7 +32,15 @@ class Tower(Unit):
     """
     Tower creates an instance of a tower
     """
-    def __init__(self, Loc: Vector2D, strength:int, health:int, defense: int, range:int, splash_radius:int, can_attack_flying:bool, price: int) -> None:
+    def __init__(self, Loc: Vector2D, 
+                 strength:int, 
+                 health:int, 
+                 defense: int, 
+                 range:int, 
+                 splash_radius:int, 
+                 can_attack_flying:bool, 
+                 price: int) -> None:
+        """ Initializes a tower"""
         super().__init__(Loc=Loc,
                          strength=strength, 
                          health=health, 
@@ -45,6 +53,7 @@ class Tower(Unit):
                          )
         
     def attack(self, target: None) -> ProjectileAttack:
+        """ Attack a target"""
         return ProjectileAttack(attack_strength=self.strength, 
                                 Loc=self.Loc, 
                                 velocity=10.0,
@@ -84,25 +93,25 @@ class UnitFactory(ABC):
     """ A factory to generate Units """
     
     @abstractmethod
-    def create_new(self, Loc: Vector2D) -> Unit:
+    def create_new_unit(self, Loc: Vector2D) -> Unit:
         """ Return a Unit """
         
 class TowerFactory(UnitFactory):
     """ Factory aimed to generate a Tower"""
     @abstractmethod
-    def create_new(self, Loc: Vector2D) -> Tower:
+    def create_new_unit(self, Loc: Vector2D) -> Tower:
         """ Creates a new tower intance """
         
 class SimpletonTowerFactory(TowerFactory):
     """ Factory aimed to generate Simpleton Tower Instances"""
     
-    def create_new(self, Loc: Vector2D) -> Tower:
+    def create_new_unit(self, Loc: Vector2D) -> Tower:
         """ Create a Simpleton Tower instance"""
         return SimpletonTower(Loc = Loc)
 
 class SplashTowerFactory(TowerFactory):
     """ Factory aimed to generate Splash Tower Instances"""
     
-    def create_new(self, Loc: Vector2D) -> Tower:
+    def create_new_unit(self, Loc: Vector2D) -> Tower:
         """ Create a Splash Tower instance"""
         return SplashTower(Loc = Loc)
