@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from sys import intern
-from this import d
 
 from factory.attacks import Attack, ProjectileAttack, AttackType
 from factory.enemies import Enemy

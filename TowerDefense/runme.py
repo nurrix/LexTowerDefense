@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 
-from factory.units import SimpletonTower, SimpletonTowerFactory, SplashTowerFactory
+from factory.enemies import BasicEnemyFactory
+from factory.units import SimpletonTowerFactory, SplashTowerFactory
 from utility.vector import Vector2D
 
 
@@ -14,10 +15,17 @@ def main() -> None:
                "SplashTower": SplashTowerFactory(),
             }
     
+    enemy_factory = {"BasicEnemy": BasicEnemyFactory(),}
+    
+    basicenemy = enemy_factory["BasicEnemy"].create_new_unit(Loc=Vector2D(x=100,y=300))
     simpletower = unit_factory["SimpleTower"].create_new_unit(Loc=Vector2D(x=100, y=313))
     splashtower = unit_factory["SplashTower"].create_new_unit(Loc=Vector2D(x=100, y=313))
+    
+    
     print(simpletower)
     print(splashtower)
+    
+    print(basicenemy)
     
 
 if __name__ == "__main__":
