@@ -1,7 +1,7 @@
 import tkinter as tk
 
 from abc import ABC
-import game
+import towerdefense.engine.engine as engine
 
 class Map(ABC):
     def __init__(self):

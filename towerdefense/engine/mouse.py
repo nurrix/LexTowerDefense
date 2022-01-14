@@ -1,5 +1,5 @@
 from abc import ABC
-import game as game
+import towerdefense.engine.engine as engine
 import tkinter as tk
 
 class Mouse(ABC):
