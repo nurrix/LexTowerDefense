@@ -5,6 +5,8 @@ from factory.enemies import BasicEnemyFactory
 from factory.units import SimpletonTowerFactory, SplashTowerFactory
 from utility.vector import Vector2D
 
+from gameitems import towerdefensegame
+
 
 def main() -> None:
     """
@@ -17,6 +19,11 @@ def main() -> None:
         }
     
     enemy_factory = {"BasicEnemy": BasicEnemyFactory(),}
+    
+    game = towerdefensegame.TowerDefenseGame()
+    game.start()
+    game.stop()
+    
     
     simpletower = unit_factory["SimpleTower"].create_new_unit(Loc=Vector2D(x=100, y=313))
     splashtower = unit_factory["SplashTower"].create_new_unit(Loc=Vector2D(x=100, y=313))

@@ -1,7 +1,5 @@
 import tkinter as tk
-
 from abc import ABC
-import game
 
 class Map(ABC):
     def __init__(self):

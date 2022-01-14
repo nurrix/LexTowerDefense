@@ -46,4 +46,9 @@ class TowerDefenseGame(game.Game):
     def paint(self):
         super().paint()
         
+    def start(self):
+        pass
+    
+    def stop(self):
+        pass
         
