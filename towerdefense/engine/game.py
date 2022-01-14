@@ -11,6 +11,9 @@ class GameObject(Protocol):
     def paint(self, canvas: tk.Canvas):
         """ Paint game object. """
 
+
+
+
 class Game(ABC):
     
     def __init__(self,title:str = "Unknown Game Name", width=600, height=600, timestep:int = 50) -> None:
@@ -76,3 +79,14 @@ class Game(ABC):
         """ This Draws the game """
         for obj in self.objects:
             obj.paint(self.canvas)
+            
+            
+class Mouse(ABC):
+    def __init__(self,master: Game=None):
+        self.master = master
+    
+    def update(self):
+        """ Update game object. """
+        
+    def paint(self, canvas: tk.Canvas):
+        """ Paint game object. """
