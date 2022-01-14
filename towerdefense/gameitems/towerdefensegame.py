@@ -1,9 +1,11 @@
 
 from abc import ABC
 import tkinter as tk
-import game
-
 from enum import Enum, auto
+
+
+from engine import game, map, mouse, wavegenerator
+from gameitems import towerbox, infoboard, displayboard
 
 
 class TowerDefenseGameState(Enum):
@@ -30,13 +32,13 @@ class TowerDefenseGame(game.Game):
         """ Initialize the TowerDefense Game Specifics. """
         self.state: TowerDefenseGameState = TowerDefenseGameState.IDLE
         
-        self.displayboard = DisplayBoard()
-        self.infoboard = Infoboard()
-        self.towerbox = TowerBox()
+        self.displayboard = displayboard.DisplayBoard()
+        self.infoboard = infoboard.Infoboard()
+        self.towerbox = towerbox.TowerBox()
         
-        self.add_object(object=Map())
-        self.add_object(object=WaveGenerator())
-        self.add_object(object=Mouse(self))
+        self.add_object(object=map.Map())
+        self.add_object(object=wavegenerator.WaveGenerator())
+        self.add_object(object=mouse.Mouse(self))
         
     def update(self):
         super().update()
@@ -45,21 +47,3 @@ class TowerDefenseGame(game.Game):
         super().paint()
         
         
-class DisplayBoard(ABC):
-    pass
-
-class Infoboard(ABC):
-    pass
-
-class TowerBox(ABC):
-    pass
-
-class Mouse(ABC):
-    def __init__(self,master: game.Game=None):
-        self.master = master
-
-class Map(ABC):
-    pass
-
-class WaveGenerator(ABC):
-    pass

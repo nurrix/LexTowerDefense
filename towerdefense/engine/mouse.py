@@ -1,9 +1,9 @@
 from abc import ABC
-import game as game
+from engine import game
 import tkinter as tk
 
 class Mouse(ABC):
-    def __init__(self):
+    def __init__(self, master: game.Game):
         pass
     
     def update(self):
